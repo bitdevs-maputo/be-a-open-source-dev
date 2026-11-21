@@ -1,11 +1,11 @@
-# 🚀 Desafios Open Source
+# Desafios Open Source
 
 Repositório de treino para aprender a **contribuir em projectos open source** da forma como se faz no mundo real:
 fork, branches, Gitflow, issues, Conventional Commits, Pull Requests, tags e releases — resolvendo desafios de programação.
 
 > Linguagem dos desafios: **Python 3.10+** (o fluxo Git é o mesmo para qualquer linguagem).
 
-## 🎯 O que vais aprender
+## O que vais aprender
 
 | Competência | Onde ver |
 |---|---|
@@ -16,7 +16,7 @@ fork, branches, Gitflow, issues, Conventional Commits, Pull Requests, tags e rel
 | Pull Requests | [docs/05-pull-request.md](docs/05-pull-request.md) |
 | Tags e Releases | [docs/06-tags-e-releases.md](docs/06-tags-e-releases.md) |
 
-## 📜 Regras (resumo)
+## Regras (resumo)
 
 1. **Nunca** fazes push directo para `main` nem `dev`. Trabalhas sempre no teu **fork**.
 2. Cada desafio tem uma **issue**. Antes de começar, comenta na issue: *"Quero resolver este desafio"*.
@@ -29,15 +29,15 @@ fork, branches, Gitflow, issues, Conventional Commits, Pull Requests, tags e rel
 
 Regras completas: [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## 🧩 Desafios
+## Desafios
 
 | # | Desafio | Nível | Pasta |
 |---|---|---|---|
-| 01 | Calculadora Recursiva | 🟢 Fácil | [desafios/01-calculadora-recursiva](desafios/01-calculadora-recursiva) |
-| 02 | Gerador de Números Primos | 🟡 Intermédio | [desafios/02-gerador-numeros-primos](desafios/02-gerador-numeros-primos) |
-| 03 | Pesquisa Binária Recursiva | 🟡 Intermédio | [desafios/03-pesquisa-binaria-recursiva](desafios/03-pesquisa-binaria-recursiva) |
+| 01 | Calculadora Recursiva | Fácil | [desafios/01-calculadora-recursiva](desafios/01-calculadora-recursiva) |
+| 02 | Gerador de Números Primos | Intermédio | [desafios/02-gerador-numeros-primos](desafios/02-gerador-numeros-primos) |
+| 03 | Pesquisa Binária Recursiva | Intermédio | [desafios/03-pesquisa-binaria-recursiva](desafios/03-pesquisa-binaria-recursiva) |
 
-## 🗺️ Fluxo resumido
+## Fluxo resumido
 
 ```
  repo original (upstream)            o teu fork (origin)            a tua máquina
@@ -48,7 +48,7 @@ Regras completas: [CONTRIBUTING.md](CONTRIBUTING.md)
                               └── tu sincronizas o teu fork com a dev antes de começar
 ```
 
-## ▶️ Correr os testes localmente
+## Correr os testes localmente
 
 ```bash
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
