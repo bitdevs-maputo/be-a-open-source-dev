@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [dev, main]
+  push:
+    branches: [dev, main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  testes:
+    name: Testes Python
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar pytest
+        run: python -m pip install --upgrade pip pytest
+
+      - name: Executar testes
+        run: python -m pytest -v
+
+  titulo-pr:
+    name: Validar título do PR
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Validar título (Conventional Commits)
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          regex='^(feat|fix|docs|style|refactor|test|chore|ci|build|perf|revert)(\([a-z0-9-]+\))?!?: .{3,}$'
+          if [[ ! "$TITLE" =~ $regex ]]; then
+            echo "ERRO: título inválido: $TITLE"
+            echo "Usa: tipo(escopo): descrição — ex.: feat(desafio-01): adiciona fatorial"
+            exit 1
+          fi
+          echo "Título válido"
+
+  origem-main:
+    name: Validar origem dos PRs para main
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verificar branch de origem
+        env:
+          HEAD: ${{ github.head_ref }}
+        run: |
+          if [[ ! "$HEAD" =~ ^(release|hotfix)/ ]]; then
+            echo "ERRO: PRs para main só podem vir de release/* ou hotfix/*. Aponta o teu PR para dev."
+            exit 1
+          fi
+          echo "Branch de origem válida"
